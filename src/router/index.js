@@ -97,16 +97,5 @@ router.afterEach((to) => {
   } else {
     document.title = store.sysConfig.sys_app_name;
   }
-
-  // Vincent 2023004 修复加载水印的bug 
-  // if (store.userInfo != undefined){
-  //   if ( store.userInfo.name != undefined ) {
-  //     Watermark.set(store.userInfo.name)
-  //   } else {
-  //     Watermark.out() // 清除水印
-  //   }
-  // } else{
-  //   Watermark.out() // 清除水印
-  // }
 });
 export default router;
