@@ -13,7 +13,7 @@ $--color-text-4: rgba(255, 255, 255, 0.3);
 
 body[arco-theme='dark'] {
   .navbar {
-    background-color: $dark-bg-1;
+    background-color: var(--color-bg-2);
   }
   .arco-layout-content {
     background-color: $color-bg-2
