@@ -95,11 +95,7 @@
         <a-row :gutter="24">
           <a-col :span="12">
             <a-form-item field="icon" label="菜单图标">
-              <a-select v-model="modalForm.icon" :options="parseIconName" :field-names="{ name: 'value' }" :trigger-props="{ contentClass: 'iconselect-trigger' }" allow-search placeholder="请选择菜单图标">
-                <template #option="{ data }">
-                  <component :is="data.value" />
-                </template>
-              </a-select>
+              <IconSelect v-model:data="modalForm.icon" />
             </a-form-item>
           </a-col>
           <a-col :span="12">
@@ -162,12 +158,10 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, ref, getCurrentInstance, computed, watch, watchEffect } from 'vue';
-import * as ArcoIconModules from '@arco-design/web-vue/es/icon';
+import { onMounted, reactive, ref, getCurrentInstance, watch, watchEffect } from 'vue';
 import { getMenu } from '@/api/admin/menu';
 import { getSysApi } from '@/api/admin/sys-api';
 import { addMenu, removeMenu, updateMenu, getMenuDetails } from '@/api/admin/menu';
-import {IconLoop, IconSearch} from "@arco-design/web-vue/es/icon";
 
 // Akiraka 20230210 删除数据
 const deleteData = ref([])
@@ -242,7 +236,7 @@ watchEffect(() => {
 // Table
 const columns = [
   { title: '菜单名称', dataIndex: 'title',width: "220" },
-  // { title: '图标', dataIndex: 'icon', slotName: 'icon' },
+  { title: '图标', dataIndex: 'icon', slotName: 'icon', width: "80" },
   { title: '路由地址', dataIndex: 'path', width: "400" },
   { title: '组件地址', dataIndex: 'component', width: "300" },
   { title: '排序', dataIndex: 'sort', width: "80" },
@@ -325,19 +319,6 @@ const getSysApiInfo = async () => {
   }
 };
 
-// 转换Icon Object 为 list
-const parseIconName = computed(() => {
-  const iconNameList = [];
-
-  for (let key in ArcoIconModules) {
-    if (ArcoIconModules[key].name) {
-      iconNameList.push({ value: ArcoIconModules[key].name });
-    }
-  }
-
-  return iconNameList;
-});
-
 onMounted(() => {
   getSysMenuInfo();
   getSysApiInfo();
@@ -345,17 +326,6 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-
-// 覆盖默认 select trigger 样式
-.iconselect-trigger .arco-select-dropdown-list {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.iconselect-trigger .arco-select-option {
-  width: auto;
-}
-
 // 覆盖默认穿梭框样式
 .menu-modal {
   .arco-transfer-view {

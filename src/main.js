@@ -12,6 +12,8 @@ import permission from '@/directive/permission/permission';
 
 // 引入 Arco 图标库
 import * as ArcoIconModules from '@arco-design/web-vue/es/icon';
+// 引入 RemixIcon 图标库
+import * as RemixIcon from "@remixicon/vue";
 
 console.log(import.meta.env);
 
@@ -30,6 +32,10 @@ app.config.globalProperties.parseTime = parseTime;
 // 挂载全局图标
 for(const name in ArcoIconModules){
   app.component(name,ArcoIconModules[name])
+}
+
+for(const name in RemixIcon){
+  app.component(name,RemixIcon[name])
 }
 
 app.use(ArcoVue);
