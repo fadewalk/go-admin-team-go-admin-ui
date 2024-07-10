@@ -2,12 +2,12 @@
   <a-select v-model="dataModel" :options="IconSelect" :trigger-props="{ contentClass: 'iconSelect' }" allow-search allow-clear placeholder="请选择菜单图标">
     <template #label="{ data }">
       <a-space>
-        <component :is="data.value" />
+        <component :is="data.value" :width="size" :height="size" :size="size.toString()" />
         <span v-if="title">{{data?.value}}</span>
       </a-space>
     </template>
     <template #option="{ data }">
-      <component :is="data.value" />
+      <component :is="data.value" :width="size" :height="size" :size="size.toString()" />
     </template>
   </a-select>
 </template>
@@ -25,6 +25,11 @@ const props = defineProps({
   title: {
     type: Boolean,
     default: true
+  },
+  // Akiraka 20240709 控制图标显示大小
+  size: {
+    type: [Number, String],
+    default: 16
   }
 });
 
