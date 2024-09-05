@@ -6,6 +6,7 @@
     <a-layout>
       <a-layout-header>
         <Navbar :collapsed="collapsed" @on-collapse="onCollapse" />
+        <tag-view />
       </a-layout-header>
       <a-layout-content class="layout-content">
         <AppMain />
@@ -18,6 +19,7 @@
 import { ref } from 'vue';
 import { AppMain, Navbar } from './components';
 import Menu from './components/Menu/Menu.vue';
+import TagView from './components/TagView/TagView.vue';
 
 const collapsed = ref(false);
 const onCollapse = () => {
