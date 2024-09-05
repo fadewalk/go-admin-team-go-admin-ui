@@ -110,7 +110,7 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 
 go 1.17 
 
-node版本: v16 +
+node版本: v18 +
 
 npm版本: 6.14.11
 
